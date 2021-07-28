@@ -76,6 +76,7 @@ respiratorias <- cids %>%
 
 op_inverno <- sol %>%
   filter(datasolicitacao >= ymd("2020-05-01")) %>% 
+  filter(municipioexecutante == "PORTO ALEGRE") %>% 
   filter(!flag_covid) %>% 
   filter(flag_internou) %>% 
   filter(flag_moradorPOA) %>% 
@@ -86,11 +87,17 @@ Desc(op_inverno$idade)
 Desc(op_inverno$tipoleito)
 
 
-
 internados <- sol %>%
   filter(datasolicitacao >= ymd("2020-05-01")) %>% 
+  filter(municipioexecutante == "PORTO ALEGRE") %>% 
   filter(!flag_covid) %>% 
   filter(flag_internou) %>% 
   filter(flag_internado) %>% 
   filter(flag_moradorPOA) %>% 
   filter(codigocid %in% respiratorias)
+
+sol %>% 
+  filter(flag_internado) %>% 
+  filter(municipioexecutante == "PORTO ALEGRE")
+
+internados$idade
