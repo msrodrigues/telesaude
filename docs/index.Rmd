@@ -103,7 +103,8 @@ Row
 
 valueBox(
   value = glue("{nrow(internados)} pacientes"), 
-  caption = "Internados por CIDs Respiratórios")
+  caption = "Internados por CIDs Respiratórios",
+  icon = "fa-hospital-user")
 
 
 ```
@@ -116,7 +117,8 @@ valueBox(
 
 valueBox(
   value = glue("{nrow(pediatria)} pediátricos"), 
-  caption = "Internados por CIDs Respiratórios")
+  caption = "Internados por CIDs Respiratórios",
+  icon = "fa-baby")
 
 
 ```
@@ -130,7 +132,9 @@ valueBox(
 
 valueBox(
   value = glue("{nrow(uti)} na UTI"), 
-  caption = "Internados por CIDs Respiratórios")
+  caption = "Internados por CIDs Respiratórios", 
+  color = "info",
+  icon = "fa-procedures")
 
 
 ```
