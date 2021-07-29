@@ -28,6 +28,10 @@ p_load(kableExtra)
 p_load(RColorBrewer)
 p_load(scales)
 p_load(reactable)
+p_load(htmlwidgets)
+p_load(highcharter)
+p_load(leaflet)
+p_load(htmltools)
 
 # Data wrangling
 p_load(collapse)
@@ -74,17 +78,21 @@ Sys.setlocale("LC_TIME", "pt_BR")
 
 internados <- read_rds(file = "../bin/internados.rds")
 op_inverno <- read_rds(file = "../bin/op_inverno.rds")
+hospitais_poa <- read_rds(file = "/Users/marciorodrigues/Dropbox/Coding/R/data/cnes/bin/hospitais_poa.rds")
 
 
 
 ```
 
+-----------------------------------------------------------------------
 
 
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Pacientes internados no moento
+
+
+### Pacientes internados no momento
 
 ```{r}
 
@@ -113,6 +121,25 @@ Column {data-width=350}
 ### Chart B
 
 ```{r}
+
+int_hosp <- left_join(internados, hospitais_poa, by = c("executante" = "no_fantasia")) %>% 
+  select(executante, nu_latitude, nu_longitude) %>% 
+  group_by(executante, nu_latitude, nu_longitude) %>% 
+  tally() %>% 
+  mutate(
+    legenda = glue(.sep = "<br/>", "<b>{executante}</b>", "Quantidade de pacientes: {n} <br/>")
+    )
+
+leaflet(data = int_hosp) %>% 
+  addTiles() %>% 
+  addCircleMarkers(
+    lng = ~nu_longitude, 
+    lat = ~nu_latitude, 
+    radius = ~log(n, base = 1.5), 
+    popup = ~as.character(legenda),
+    label =~as.character(executante) 
+    ) 
+
 
 ```
 

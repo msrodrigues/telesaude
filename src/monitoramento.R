@@ -101,3 +101,10 @@ sol %>%
   filter(municipioexecutante == "PORTO ALEGRE")
 
 internados$idade
+
+
+
+# Salvamentos de arquivos -------------------------------------------------
+
+write_rds(x = internados, file = "bin/internados.rds")
+write_rds(x = op_inverno, file = "bin/op_inverno.rds")
