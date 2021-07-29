@@ -58,8 +58,11 @@ Sys.setlocale("LC_TIME", "pt_BR")
 # Carregamentos iniciais --------------------------------------------------
 
 
+
 solicitacoes <- read_rds(file = "~/Dropbox/Coding/R/data/gerint/bin/solicitacoes.rds")
+solicitacoes$ultima_entrada
 sol <- solicitacoes$solicitacoes
+
 int <- solicitacoes$internados
 # Tipos de cids
 
@@ -75,7 +78,7 @@ respiratorias <- cids %>%
   filter(grupo == "Respiratórias") %>% pull(codigocid)
 
 op_inverno <- sol %>%
-  filter(datasolicitacao >= ymd("2020-05-01")) %>% 
+  filter(datasolicitacao >= ymd("2021-05-01")) %>% 
   filter(municipioexecutante == "PORTO ALEGRE") %>% 
   filter(!flag_covid) %>% 
   filter(flag_internou) %>% 
