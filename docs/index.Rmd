@@ -105,12 +105,20 @@ reactable(
   groupBy = "executante", 
   columns = list(
     executante = colDef(name = "Hospital Executante", minWidth = 600),
-    datahorainternacao = colDef(name = "Data da Internação", minWidth = 200),
-    protocologerint = colDef(name = "gerint", minWidth = 200),
-    datahorainternacao = colDef(name = "Data da Internação", minWidth = 100),
+    datahorainternacao = colDef(name = "Internação", minWidth = 100),
+    protocologerint = colDef(name = "Gerint", minWidth = 120),
+    tipoleito = colDef(name = "Tipo de Leito", minWidth = 150),
+    carater = colDef(name = "Carater", minWidth = 120),
+    idade = colDef(name = "Idade", minWidth = 58, align = "center"),
+    sexo = colDef(name = "Sexo", minWidth = 100),
     datahorainternacao = colDef(name = "Data da Internação", minWidth = 100),
     datahorainternacao = colDef(name = "Data da Internação", minWidth = 100)
-  )
+  ), 
+  sortable = TRUE, 
+  resizable = TRUE, 
+  filterable = TRUE, 
+  searchable = TRUE, 
+  showPageSizeOptions = TRUE
   
 )
 ```
