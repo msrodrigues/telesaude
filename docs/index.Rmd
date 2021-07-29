@@ -118,7 +118,7 @@ reactable(
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Hospitais envolvidos
 
 ```{r}
 
