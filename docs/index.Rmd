@@ -28,10 +28,13 @@ p_load(kableExtra)
 p_load(RColorBrewer)
 p_load(scales)
 p_load(reactable)
+
+# Dashboards e HTML
 p_load(htmlwidgets)
 p_load(highcharter)
 p_load(leaflet)
 p_load(htmltools)
+p_load(fontawesome)
 
 # Data wrangling
 p_load(collapse)
@@ -100,11 +103,11 @@ Row
 ### Total de Pacientes
 
 ```{r}
-
+htmltools::tagList(fontawesome::fa_html_dependency())
 valueBox(
   value = glue("{nrow(internados)} pacientes"), 
   caption = "Internados por CIDs Respiratórios",
-  icon = "fa-hospital-user")
+  icon = "fas fa-hospital-user")
 
 
 ```
