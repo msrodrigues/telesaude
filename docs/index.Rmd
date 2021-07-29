@@ -146,14 +146,33 @@ valueBox(
 Row
 -----------------------------------------------------------------------
 
+```{r, include=FALSE}
+
+ultima_internacao <- format.POSIXct(max(internados$datahorainternacao), "%A, %d de %B de %Y, as %H:%M:%Sh")
+
+
+
+```
 
 
 ### Monitoramento da Operação Inverno
 
 Este Dashboard é para consulta dos pacientes internados por cids respiratórios nesse momento. É um auxilio as equipes de monitoramento do **Telesaúde** de Porto Alegre.
 
-```{r}
+* Última internação: `r ultima_internacao`
 
+
+
+
+### Distribuição por idade
+
+```{r}
+internados %>% 
+  group_by(idade) %>% 
+  tally() %>% 
+  ggplot(aes(x = idade, y = n)) + geom_col() +
+  ylab("Quantidade de Paciente Internados") + 
+  xlab("Idade dos pacientes")
 ```
 
 
