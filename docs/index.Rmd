@@ -150,6 +150,8 @@ Row
 
 ```{r, include=FALSE}
 
+primeira_internacao <- format.POSIXct(min(internados$datahorainternacao), "%A, %d de %B de %Y, as %H:%M:%Sh")
+
 ultima_internacao <- format.POSIXct(max(internados$datahorainternacao), "%A, %d de %B de %Y, as %H:%M:%Sh")
 
 
@@ -212,7 +214,7 @@ Column {data-width=350}
 
 
 internados %>% 
-  select(datahorainternacao, protocologerint, tipoleito, carater, idade, sexo, executante) %>% 
+  select(datahorainternacao, protocologerint, tipoleito, carater, idade, sexo, executante, procedimentosolicitado) %>% 
   mutate(
     datahorainternacao = date(datahorainternacao)
   ) %>% 
@@ -226,7 +228,7 @@ reactable(
     carater = colDef(name = "Carater", minWidth = 120),
     idade = colDef(name = "Idade", minWidth = 70, align = "center"),
     sexo = colDef(name = "Sexo", minWidth = 100),
-    datahorainternacao = colDef(name = "Data da Internação", minWidth = 100),
+    procedimentosolicitado = colDef(name = "Sigtap", minWidth = 650, align = "left"),
     datahorainternacao = colDef(name = "Data da Internação", minWidth = 100)
   ), 
   sortable = TRUE, 

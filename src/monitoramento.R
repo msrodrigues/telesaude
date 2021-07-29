@@ -89,9 +89,13 @@ Desc(op_inverno$idade)
 
 Desc(op_inverno$tipoleito)
 
+sol %>% 
+  group_by(year(datahorasolicitacao)) %>% 
+  tally() %>% view
+
 
 internados <- sol %>%
-  filter(datasolicitacao >= ymd("2021-05-01")) %>% 
+  filter(datahorasolicitacao >= ymd_hms("2021-05-01 00:00:00")) %>% 
   filter(municipioexecutante == "PORTO ALEGRE") %>% 
   filter(!flag_covid) %>% 
   filter(flag_internou) %>% 
@@ -103,9 +107,9 @@ sol %>%
   filter(flag_internado) %>% 
   filter(municipioexecutante == "PORTO ALEGRE")
 
-internados$idade
+min(internados$datahorainternacao, na.rm = TRUE)
 
-
+min(sol$datahorainternacao, na.rm = TRUE)
 
 # Salvamentos de arquivos -------------------------------------------------
 
