@@ -2,7 +2,7 @@
 title: "Telesaúde - Operação Inverno"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     vertical_layout: fill
 ---
 
@@ -81,13 +81,62 @@ op_inverno <- read_rds(file = "../bin/op_inverno.rds")
 hospitais_poa <- read_rds(file = "/Users/marciorodrigues/Dropbox/Coding/R/data/cnes/bin/hospitais_poa.rds")
 
 
+# Bancos auxiliares ------------------------------------------------------
+
+pediatria <- internados %>% 
+  filter(grepl("PEDIAT", tipoleito))
+
+uti <- internados %>% 
+  filter(grepl("UTI", tipoleito))
+
+
 
 ```
 
+
+Row
 -----------------------------------------------------------------------
 
+### Total de Pacientes
 
-Column {data-width=650}
+```{r}
+
+valueBox(
+  value = glue("{nrow(internados)} pacientes"), 
+  caption = "Internados por CIDs Respiratórios")
+
+
+```
+
+### Pacientes Pediátricos
+
+```{r}
+
+
+
+valueBox(
+  value = glue("{nrow(pediatria)} pediátricos"), 
+  caption = "Internados por CIDs Respiratórios")
+
+
+```
+
+
+### Terapia intensiva
+
+```{r}
+
+
+
+valueBox(
+  value = glue("{nrow(uti)} na UTI"), 
+  caption = "Internados por CIDs Respiratórios")
+
+
+```
+
+
+Row
 -----------------------------------------------------------------------
 
 
@@ -104,7 +153,7 @@ internados %>%
 reactable(
   groupBy = "executante", 
   columns = list(
-    executante = colDef(name = "Hospital Executante", minWidth = 600),
+    executante = colDef(name = "Hospital Executante", minWidth = 600, align = "left"),
     datahorainternacao = colDef(name = "Internação", minWidth = 110),
     protocologerint = colDef(name = "Gerint", minWidth = 120),
     tipoleito = colDef(name = "Tipo de Leito", minWidth = 150),
@@ -122,7 +171,7 @@ reactable(
   defaultPageSize = 25, 
   highlight = TRUE,
   striped = TRUE, 
-  showSortable = TRUE
+  showSortable = TRUE,defaultColDef = colDef(align = "center")
   
   
 )

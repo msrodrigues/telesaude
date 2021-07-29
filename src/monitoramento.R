@@ -91,7 +91,7 @@ Desc(op_inverno$tipoleito)
 
 
 internados <- sol %>%
-  filter(datasolicitacao >= ymd("2020-05-01")) %>% 
+  filter(datasolicitacao >= ymd("2021-05-01")) %>% 
   filter(municipioexecutante == "PORTO ALEGRE") %>% 
   filter(!flag_covid) %>% 
   filter(flag_internou) %>% 
